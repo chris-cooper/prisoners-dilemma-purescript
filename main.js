@@ -1,7 +1,8 @@
 var PS = require('./prisoner');
+var dilemma = require('dilemma');
 
-console.log('hi there ' + PS.Prisoner.incr(5));
-console.log('always betray: ' + PS.Prisoner.alwaysBetray);
-console.log('titForTat betray: ' + PS.Prisoner.titForTat(PS.Prisoner.Just(PS.Prisoner.betray)));
-console.log('titForTat trust: ' + PS.Prisoner.titForTat(PS.Prisoner.Just(PS.Prisoner.trust)));
-console.log('titForTat nothing: '+ PS.Prisoner.titForTat(PS.Prisoner.Nothing));
+dilemma('pure-tit-for-tat', { server: 'rtchub' }, function(results, callback) {
+  var opponentPrevious = results.opponent[0];
+
+  return callback(null, PS.Prisoner.titForTat(PS.Prisoner.Just(opponentPrevious)));
+});
