@@ -544,11 +544,23 @@ var PS = PS || {};
 PS.Prisoner = (function () {
     "use strict";
     var Prelude = PS.Prelude;
+    var trust = "C";
     var incr = function (x) {
         return x + 1;
     };
+    var betray = "D";
+    var always = function (x) {
+        return x;
+    };
+    var alwaysBetray = always(betray);
+    var alwaysTrust = always(trust);
     return {
-        incr: incr
+        alwaysTrust: alwaysTrust, 
+        alwaysBetray: alwaysBetray, 
+        always: always, 
+        incr: incr, 
+        trust: trust, 
+        betray: betray
     };
 })();
 var PS = PS || {};
