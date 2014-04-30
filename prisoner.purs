@@ -18,4 +18,4 @@ alwaysTrust = always trust
 titForTat :: Maybe String -> String
 titForTat x = case x of 
 	Just y -> y
-	Nothing -> always trust
+	Nothing -> always betray

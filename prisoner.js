@@ -569,7 +569,7 @@ PS.Prisoner = (function () {
             return x.values[0];
         };
         if (x.ctor === "Prisoner.Nothing") {
-            return always(trust);
+            return always(betray);
         };
         throw "Failed pattern match";
     };
