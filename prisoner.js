@@ -544,6 +544,16 @@ var PS = PS || {};
 PS.Prisoner = (function () {
     "use strict";
     var Prelude = PS.Prelude;
+    var Nothing = {
+        ctor: "Prisoner.Nothing", 
+        values: [  ]
+    };
+    var Just = function (value0) {
+        return {
+            ctor: "Prisoner.Just", 
+            values: [ value0 ]
+        };
+    };
     var trust = "C";
     var incr = function (x) {
         return x + 1;
@@ -554,7 +564,19 @@ PS.Prisoner = (function () {
     };
     var alwaysBetray = always(betray);
     var alwaysTrust = always(trust);
+    var titForTat = function (x) {
+        if (x.ctor === "Prisoner.Just") {
+            return x.values[0];
+        };
+        if (x.ctor === "Prisoner.Nothing") {
+            return always(trust);
+        };
+        throw "Failed pattern match";
+    };
     return {
+        Nothing: Nothing, 
+        Just: Just, 
+        titForTat: titForTat, 
         alwaysTrust: alwaysTrust, 
         alwaysBetray: alwaysBetray, 
         always: always, 
