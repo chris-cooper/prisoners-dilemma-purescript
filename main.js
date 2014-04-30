@@ -1,8 +1,12 @@
 var PS = require('./prisoner');
 var dilemma = require('dilemma');
 
-dilemma('pure-tit-for-tat', { server: 'rtchub' }, function(results, callback) {
+dilemma('purescript', {
+  server : 'rtchub'
+}, function(results, callback) {
   var opponentPrevious = results.opponent[0];
-
-  return callback(null, PS.Prisoner.titForTat(PS.Prisoner.Just(opponentPrevious)));
+  console.log("opponent: " + opponentPrevious);
+  var result = PS.Prisoner.titForTat(typeof opponentPrevious === 'undefined' ? PS.Prisoner.Nothing : PS.Prisoner.Just(opponentPrevious));
+  console.log("result: " + result);
+  return callback(null, result);
 });
